@@ -1,0 +1,153 @@
+        <div class="container details">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1 hidden-sm hidden-xs">
+                    <div class="circle safe">
+                        <img src="/img/circle-shield.png"><br />
+                        <?php echo $t->_('safe.payment'); ?>
+                    </div>
+
+                    <div class="circle mcafee">
+                        <img src="/img/circle-mcafee.png"><br />
+                    </div>
+
+                    <div class="circle delivery">
+                        <img src="/img/circle-delivery.png"><br />
+                        <?php echo $t->_('fast.delivery'); ?>
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-xs-12 col-md-offset-1">
+                    <?php $this->flashSession->output(); ?>
+                    
+                    <form method="post" action="">
+                        <input type="hidden" name="product" value="<?php echo $product->id; ?>">
+                        <input type="hidden" name="currency" value="USD">
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="firstname" class="form-control" value="<?php echo $fields['firstname'] ?>" placeholder="<?php echo $t->_('firstname'); ?>" maxlength="50">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="lastname" class="form-control" value="<?php echo $fields['lastname'] ?>" placeholder="<?php echo $t->_('lastname'); ?>" maxlength="50">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="address" class="form-control" value="<?php echo $fields['address'] ?>" placeholder="<?php echo $t->_('address'); ?>" maxlength="100">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="zipcode" class="form-control" value="<?php echo $fields['zipcode'] ?>" placeholder="<?php echo $t->_('zipcode'); ?>" maxlength="16">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select name="country" class="form-control">
+                                <?php foreach ($countries as $country) { ?>
+                                    <?php if (!empty($fields['country']) && $fields['country'] == $country->id) { ?>
+                                    <option value="<?php echo $country->id; ?>" selected><?php echo $country->name; ?></option>
+                                    <?php } else if (empty($fields['country']) && !empty($client_country) && $client_country == $country->id) { ?>
+                                    <option value="<?php echo $country->id; ?>" selected><?php echo $country->name; ?></option>
+                                    <?php } else { ?>
+                                    <option value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="state" class="form-control">
+                                    <option value="" disabled selected><?php echo !empty($errors['state']) ? $errors['state'] : $t->_('state'); ?></option>
+                                    <?php if (!empty($states)) { ?>
+                                    <?php foreach ($states as $state) { ?>
+                                    <?php if (!empty($fields['state']) && $fields['state'] == $state->id) { ?>
+                                    <option value="<?php echo $state->id; ?>" selected><?php echo $state->name; ?></option>
+                                    <?php } else { ?>
+                                    <option value="<?php echo $state->id; ?>"><?php echo $state->name; ?></option>
+                                    <?php } ?>
+                                    <?php } ?>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="city" value="<?php echo $fields['city'] ?>" class="form-control" placeholder="<?php echo $t->_('city'); ?>" maxlength="30">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" name="email" value="<?php echo $fields['email'] ?>" class="form-control" placeholder="<?php echo $t->_('email'); ?>" maxlength="50">
+                            </div>
+                        </div>
+                        
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#cards-form" aria-controls="cards-form" role="tab" data-toggle="tab"><img src="/img/cards-logos.png"></a></li>
+                            <li role="presentation"><a href="#paypal" aria-controls="paypal" role="tab" data-toggle="tab"><img src="/img/paypal-logo.png"></a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="cards-form">
+                                <form class="form-horizontal" method="post">
+                                    <input type="hidden" name="<?php echo $this->security->getTokenKey(); ?>" value="<?php echo $this->security->getToken(); ?>"/>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="cardNumber"><?php echo $t->_('cardnumber'); ?><span>*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="card_number" value="<?php echo $fields['card_number'] ?>" class="form-control" id="cardNumber">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="month"><?php echo $t->_('expiration.date'); ?> <small><?php echo $t->_('month.year'); ?></small><span>*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="card_exp_month" value="<?php echo $fields['card_exp_month'] ?>" class="form-control" id="month" placeholder="MM" maxlength="2">
+                                        </div>
+                                        <div class="col-sm-1">/</div>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="card_exp_year" value="<?php echo $fields['card_exp_year'] ?>" class="form-control" id="year" placeholder="YYYY" maxlength="4">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="cvv">CVV<span>*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="card_cvv" value="<?php echo $fields['card_cvv'] ?>" class="form-control" id="cvv"" maxlength="3">
+                                        </div>
+                                        <div class="col-sm-5">&nbsp;</div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-fidget btn-lg border submit-button"><?php echo $t->_('rush.my.order'); ?></button>
+                                </form>
+                            </div>
+                            
+                            <div role="tabpanel" class="tab-pane" id="paypal">
+
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                    <input type="hidden" name="cmd" value="_s-xclick">
+                                    <input type="hidden" name="hosted_button_id" value="CMPXUNCAAQ5L8">
+                                    <input type="hidden" name="on0" value="Supply Packages">
+                                    <input type="hidden" name="os0" value="<?php echo $product->paypal; ?>">
+                                    <input type="hidden" name="currency_code" value="USD">
+                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+                                    <button type="submit" class="btn btn-fidget btn-lg border" onsubmit="yaCounter44649961.reachGoal('paypal'); return true;">
+                                        <?php echo $t->_('pay.with.paypal'); ?>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <p style="margin-top:20px;"><?php echo $t->_('accept'); ?></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    window.step = 2;
+    window.lang = '<?php echo $lang; ?>';
+</script>

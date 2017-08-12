@@ -1,0 +1,9 @@
+/* PDW Widget */
+
+#pdw-toolbar-hide {
+    z-index: 10000;
+}
+
+.pdw-sql-data-table tr td:first-child {
+    font-family: 'Ubntu Mono', Consolas, monospace;
+}

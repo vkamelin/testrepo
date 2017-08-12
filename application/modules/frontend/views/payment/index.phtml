@@ -1,0 +1,69 @@
+<div class="container">
+<div class="row">
+  <form class="payment-form col-md-6" id="payment-form" action="" method="GET">
+    <input type="hidden" name="amount" value="4200">
+    <input type="hidden" name="currency" value="EUR">
+    <input type="hidden" name="description" value="Easy Payments Guide!!!">
+
+    <div id="credit-card-fields">
+      <!-- Embedded credit card frame will load here -->
+    </div>
+
+    <button class="form-control btn btn-success submit-button" type="submit">Get your "Easy Payments Guide" now for 42тВм</button>
+  </form>
+</div>
+</div>
+
+
+<script src="/assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="https://bridge.paymill.com/"></script>
+
+<script>
+//    PAYMILL_PUBLIC_KEY = '2578121138590cac851a2fc38fe0c11c'; // TEST
+    PAYMILL_PUBLIC_KEY = '06f757fee471e06765d73a672226fe6b'; // LIVE
+
+  // Callback for the PayFrame
+  var payFrameCallback = function (error) {
+    if (error) {
+      // Frame could not be loaded, check error object for reason.
+      console.log(error.apierror, error.message);
+    } else {
+      // Frame was loaded successfully and is ready to be used.
+      console.log("PayFrame successfully loaded");
+      $("#payment-form").show(300);
+      $('#pm-cvc-label').text('CVV');
+    }
+  }
+
+  $(document).ready(function () {
+    paymill.embedFrame('credit-card-fields', {
+      lang: 'en'
+    }, payFrameCallback);
+
+    $("#payment-form").submit(submit);
+  });
+
+var submit = function (event) {
+  paymill.createTokenViaFrame({
+    amount_int: 4200,
+    currency: 'EUR'
+  }, function(error, result) {
+    // Handle error or process result.
+    if (error) {
+      // Token could not be created, check error object for reason.
+      alert(error.message);
+      console.log(error.apierror, error.message);
+    } else {
+      // Token was created successfully and can be sent to backend.
+      var form = $("#payment-form");
+      var token = result.token;
+      form.append("<input type='hidden' name='token' value='" + token + "'/>");
+      form.get(0).submit();
+    }
+  });
+
+  return false;
+}
+</script>
+
+

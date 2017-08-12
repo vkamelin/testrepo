@@ -1,0 +1,79 @@
+        <div class="container order">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1 hidden-sm hidden-xs">
+                    <div class="circle safe">
+                        <img src="/img/circle-shield.png"><br>
+                        <?php echo $t->_('safe.payment'); ?>
+                    </div>
+
+                    <div class="circle mcafee">
+                        <img src="/img/circle-mcafee.png"><br>
+                    </div>
+
+                    <div class="circle delivery">
+                        <img src="/img/circle-delivery.png"><br>
+                        <?php echo $t->_('fast.delivery'); ?>
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-xs-12 col-md-offset-1">
+                    <h3><?php echo $t->_('order.summary'); ?></h3>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <td id="orderProduct"><?php echo $product->name; ?>:</td>
+                            <td id="orderPrice" class="text-right">$<?php echo $product->price; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $t->_('shipping'); ?>:</td>
+                            <td id="orderShipping" class="text-right">$<?php echo $product->shippingPrice; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $t->_('total'); ?>:</td>
+                            <td id="orderTotal" class="text-right">$<?php echo $product->price + $product->shippingPrice; ?></td>
+                        </tr>
+                    </table>
+
+                    <!-- h4>Pay with Visa, MasterCard</h4 -->
+
+                    <?php $this->flashSession->output(); ?>
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#cards-form" aria-controls="cards-form" role="tab" data-toggle="tab"><img src="/img/cards-logos.png"></a></li>
+                        <li role="presentation"><a href="#paypal" aria-controls="paypal" role="tab" data-toggle="tab"><img src="/img/paypal-logo.png"></a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="cards-form">
+                            <form class="form-horizontal" id="payment-form" action="" method="POST">
+                                <input type="hidden" name="amount" value="<?php echo round(1 * 100); ?>">
+                                <input type="hidden" name="currency" value="USD">
+                                <input type="hidden" name="description" value="<?php echo $product->name; ?>">
+
+                                <div id="credit-card-fields"></div>
+
+                                <button class="btn btn-fidget btn-lg border submit-button" type="submit"><?php echo $t->_('rush.my.order'); ?></button>
+                            </form>
+                        </div>
+                        
+                        <div role="tabpanel" class="tab-pane" id="paypal">
+
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="CMPXUNCAAQ5L8">
+                                <input type="hidden" name="on0" value="Supply Packages">
+                                <input type="hidden" name="os0" value="<?php echo $product->paypal; ?>">
+                                <input type="hidden" name="currency_code" value="USD">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+                                <button type="submit" class="btn btn-fidget btn-lg border"><?php echo $t->_('pay.with.paypal'); ?></button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <p style="margin-top:20px;"><?php echo $t->_('accept'); ?></p>
+
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: phalcon\n"
+"POT-Creation-Date: 2017-08-06 19:43+0500\n"
+"PO-Revision-Date: 2017-08-06 19:48+0500\n"
+"Last-Translator: \n"
+"Language-Team: v.kamelin@gmail.com\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../modules/admin/views\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: orders/form.phtml:5
+msgid "order_edit"
+msgstr ""
+
+#: orders/form.phtml:16 users/form.phtml:26
+msgid "firstname"
+msgstr ""
+
+#: orders/form.phtml:21 users/form.phtml:31
+msgid "lastname"
+msgstr ""
+
+#: orders/form.phtml:26 users/form.phtml:36
+msgid "country"
+msgstr ""
+
+#: orders/form.phtml:31
+msgid "zipcode"
+msgstr ""
+
+#: orders/form.phtml:36 users/form.phtml:41
+msgid "state"
+msgstr ""
+
+#: orders/form.phtml:41
+msgid "city"
+msgstr ""
+
+#: orders/form.phtml:46
+msgid "address"
+msgstr ""
+
+#: orders/form.phtml:51
+msgid "phone"
+msgstr ""
+
+#: orders/form.phtml:56 users/form.phtml:21
+msgid "email"
+msgstr ""
+
+#: orders/form.phtml:61
+msgid "trackNumber"
+msgstr ""
+
+#: orders/form.phtml:66
+msgid "trackNumberDate"
+msgstr ""
+
+#: orders/index.phtml:5
+msgid "all_orders"
+msgstr "Заказы"
+
+#: products/form.phtml:5
+msgid "product_edit"
+msgstr ""
+
+#: products/form.phtml:15
+msgid "name"
+msgstr ""
+
+#: products/form.phtml:20
+msgid "paypal"
+msgstr ""
+
+#: products/form.phtml:25
+msgid "price"
+msgstr ""
+
+#: products/form.phtml:30
+msgid "shippingPrice"
+msgstr ""
+
+#: products/index.phtml:5
+msgid "all_products"
+msgstr ""
+
+#: settings/index.phtml:5
+msgid "settings"
+msgstr ""
+
+#: settings/index.phtml:15
+msgid "payment"
+msgstr ""
+
+#: translations/form.phtml:5
+msgid "translation_edit"
+msgstr ""
+
+#: translations/index.phtml:5
+msgid "translations"
+msgstr ""
+
+#: translations/index.phtml:8
+msgid "translations.new"
+msgstr ""
+
+#: users/form.phtml:5
+msgid "user_edit"
+msgstr ""
+
+#: users/form.phtml:16
+msgid "group"
+msgstr ""
+
+#: users/form.phtml:48
+msgid "membership"
+msgstr ""
+
+#: users/form.phtml:55
+msgid "membership_renewal"
+msgstr ""
+
+#: users/form.phtml:60
+msgid "membership_expiration"
+msgstr ""
+
+#: users/index.phtml:5
+msgid "all_users"
+msgstr ""

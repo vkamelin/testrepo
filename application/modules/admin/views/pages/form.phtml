@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col-md-9">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo _('Edit Page'); ?></h3>
+            </div>
+            
+            <form role="form" method="post">
+                <?php echo $form->render('id'); ?>
+                <input type="hidden" name="<?php echo $tokenKey; ?>" value="<?php echo $token; ?>">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <?php $this->flashSession->output(); ?>
+                    
+                    <div class="form-group">
+                        <label for="firstname"><?php echo $t->_('firstname'); ?></label>
+                        <?php echo $form->render('firstname'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastname"><?php echo $t->_('lastname'); ?></label>
+                        <?php echo $form->render('lastname'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country"><?php echo $t->_('country'); ?></label>
+                        <?php echo $form->render('country'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zipcode"><?php echo $t->_('zipcode'); ?></label>
+                        <?php echo $form->render('zipcode'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state"><?php echo $t->_('state'); ?></label>
+                        <?php echo $form->render('state'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city"><?php echo $t->_('city'); ?></label>
+                        <?php echo $form->render('city'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city"><?php echo $t->_('address'); ?></label>
+                        <?php echo $form->render('address'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city"><?php echo $t->_('phone'); ?></label>
+                        <?php echo $form->render('phone'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><?php echo $t->_('email'); ?></label>
+                        <?php echo $form->render('email'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="trackNumber"><?php echo $t->_('trackNumber'); ?></label>
+                        <?php echo $form->render('trackNumber'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="trackNumberDate"><?php echo $t->_('trackNumberDate'); ?></label>
+                        <?php echo $form->render('trackNumberDate'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">
+                            <?php echo $form->render('status'); ?>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+                <!-- /.box-body -->
+            </form>
+        </div>
+        <!-- /.box -->
+    </div>
+    
+    <div class="col-md-3">
+        <div class="box">
+            <div class="box-header with-border">
+                <i class="fa fa-info-circle"></i>
+
+                <h3 class="box-title">Информация о заказе</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                    <?php if (!empty($order->paymentError)) { ?>
+                    <li>
+                        <a class="text-danger">
+                            <strong>Ошибка оплаты</strong>
+                            <span class="pull-right"><?php echo $order->paymentError; ?></span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if ($product) { ?>
+                    <li>
+                        <a>
+                            <strong>Товар</strong>
+                            <span class="pull-right"><?php echo $product->paypal; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <strong>Сумма</strong>
+                            <span class="pull-right"><?php echo $order->total; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <strong>Трекинг код отправлен</strong>
+                            <span class="pull-right"><?php echo ($order->trackNumberSended) ? 'Yes' : 'No'; ?></span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <li>
+                        <a>
+                            <strong>Дата создания</strong>
+                            <span class="pull-right"><?php echo $order->dateCreated; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <strong>Дата обновления</strong>
+                            <span class="pull-right"><?php echo $order->dateModified; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        </div>
+    </div>
+</div>

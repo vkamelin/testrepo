@@ -1,0 +1,38 @@
+<?php if (isset($datatable)) { ?>
+<script>
+    $(function(){
+        var token_name = $("meta[name=<?php echo $this->security->getTokenKey(); ?>]").attr("name");
+        var token_value = $("meta[name=<?php echo $this->security->getTokenKey(); ?>]").attr("content");
+        
+        $('.datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo $datatable['source']; ?>",
+                type: "POST",
+                data: {
+                    [token_name]: token_value
+                },
+                dataSrc: function (json) {
+                    if (json.csrf !== undefined) {
+                        $("meta[name=" + token_name + "]").attr("content", json.csrf.value);
+                        $("meta[name=" + token_name + "]").attr("name", json.csrf.name);
+                        token_name = json.csrf.name;
+                    };
+                    
+                    return json.data;
+                }
+            },
+            language: {
+                url: "/assets/admin/plugins/datatables/locales/ru.json"
+            },
+            paging: true,
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: true,
+            autoWidth: false
+        });
+    });
+</script>
+<?php } ?>

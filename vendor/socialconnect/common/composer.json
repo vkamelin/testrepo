@@ -1,0 +1,30 @@
+{
+    "name": "socialconnect/common",
+    "description": "Common component",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Patsura",
+            "email": "talk@dmtry.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~2.3",
+        "phpunit/phpunit": "~4.2",
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "doctrine/cache": "~1.5.1|~1.6.0"
+    },
+    "suggest": {
+        "guzzlehttp/guzzle" : "Allows to use Http\\Client\\Guzzle, require guzzlehttp/guzzle:~5.3|~6.0."
+    },
+    "autoload": {
+        "psr-4": {
+            "SocialConnect\\Common\\": "src/"
+        }
+    }
+}

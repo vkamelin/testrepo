@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-<?php echo (isset($user)) ? '9' : '12'; ?>">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo $t->_('user_edit'); ?></h3>
+            </div>
+            
+            <form role="form" method="post">
+                <?php echo $form->render('id'); ?>
+                <input type="hidden" name="<?php echo $tokenKey; ?>" value="<?php echo $token; ?>">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <?php $this->flashSession->output(); ?>
+                    
+                    <div class="form-group">
+                        <label for="group_id"><?php echo $t->_('group'); ?></label>
+                        <?php echo $form->render('group_id'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><?php echo $t->_('email'); ?></label>
+                        <?php echo $form->render('email'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="firstname"><?php echo $t->_('firstname'); ?></label>
+                        <?php echo $form->render('firstname'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastname"><?php echo $t->_('lastname'); ?></label>
+                        <?php echo $form->render('lastname'); ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country"><?php echo $t->_('country'); ?></label>
+                        <?php echo $form->render('country'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state"><?php echo $t->_('state'); ?></label>
+                        <?php echo $form->render('state'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="membership">
+                            <?php echo $form->render('membership'); ?>
+                            <?php echo $t->_('membership'); ?>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="membership_renewal">
+                            <?php echo $form->render('membership_renewal'); ?>
+                            <?php echo $t->_('membership_renewal'); ?>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="membership_expiration"><?php echo $t->_('membership_expiration'); ?></label>
+                        <?php echo $form->render('membership_expiration'); ?>
+                    </div>
+                    
+                    <button type="submit">Отправить</button>
+                </div>
+                <!-- /.box-body -->
+            </form>
+        </div>
+        <!-- /.box -->
+    </div>
+    
+    <?php if (isset($user)) { ?>
+    <div class="col-md-3">
+        <div class="box">
+            <div class="box-header with-border">
+                <i class="fa fa-info-circle"></i>
+
+                <h3 class="box-title">Информация о пользователе</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                    <li>
+                        <a>
+                            <strong>IP</strong>
+                            <span class="pull-right"><?php echo $user->ip; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <strong>Дата регистрации</strong>
+                            <span class="pull-right"><?php echo $user->date_created; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <strong>Дата обновления</strong>
+                            <span class="pull-right"><?php echo $user->date_modified; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        
+        <div class="box">
+            <div class="box-header with-border">
+                <i class="fa fa-credit-card-alt"></i>
+
+                <h3 class="box-title">Последние транзакции</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Шлюз</th>
+                            <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2016-09-02 13:47:19</td>
+                            <td>DEBITUNIT</td>
+                            <td class="text-right">109 &euro;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <?php } ?>
+</div>
